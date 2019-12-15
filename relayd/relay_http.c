@@ -432,7 +432,7 @@ relay_read_http(struct bufferevent *bev, void *arg)
 		    "Connection", "upgrade", ",");
 		/* replacing "Upgrade", "websocket" for Safari compatibility */
 		upgrade_ws = kv_find_value(&desc->http_headers,
-		    "Sec-WebSocket-Version", "13", ",");
+		    "Sec-WebSocket-Extensions", "x-webkit-deflate-frame", ",");
 		if (cre->dir == RELAY_DIR_REQUEST && upgrade_ws != NULL) {
 			if ((proto->httpflags & HTTPFLAG_WEBSOCKETS) == 0) {
 				relay_abort_http(con, 403,
